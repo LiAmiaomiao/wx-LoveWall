@@ -1,0 +1,31 @@
+{
+  "pages": [
+    "pages/index/sayLove-page/sayLove/sayLove",
+    "pages/index/sayLove-page/sayLove-page",
+    "pages/index/sayLove-page/love-detail/love-detail",
+    "pages/index/sayLove-page/sound-detail/sound-deail",
+    "pages/index/sayLove-page/publish-text/publish-text",
+    "pages/index/sayLove-page/public-sound/public-sound",
+    "pages/mine/mine",
+    "pages/mine/biaobai-detail/biaobai-page",
+    "pages/mine/audio-page/audio-page"
+  ],
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#ffa5a5",
+    "list": [
+      {
+        "pagePath": "pages/index/sayLove-page/sayLove-page",
+        "text": "表白",
+        "iconPath": "images/tarBar/xin.png",
+        "selectedIconPath": "images/tarBar/xin3.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "images/tarBar/me.png",
+        "selectedIconPath": "images/tarBar/Sme.png"
+      }
+    ]
+  }
+}

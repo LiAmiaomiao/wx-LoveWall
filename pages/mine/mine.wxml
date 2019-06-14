@@ -1,0 +1,122 @@
+<!--pages/used/userDetail/userDetail.wxml-->
+<view class="userDetailContainer">
+  <view class="thisUser">
+    <view class="userBackground" wx:if="{{isLogin}}">
+      <image class='head-img' mode="aspectFill" src="{{userContent.user.icon}}" style='width:100%;height:30%;'></image>
+      <image class='user_head' mode="aspectFill" src="{{userContent.user.icon}}" style=""></image>
+    </view>
+    <view class="userBackground" wx:else>
+      <image class='head-img' mode="aspectFill" src="/images/news/10.jpg" style='width:100%;height:30%;'></image>
+      <image class='user_head' mode="aspectFill" src="/images/news/10.jpg" style=""></image>
+    </view>
+    <view>
+      <view class="row topview jus-bet" wx:if="{{isLogin}}">
+        <view class="name {{biaobaisex ? 'woman' : 'man'}}">{{userContent.user.name}}</view>
+        <view class="viewcount">访问量：{{userContent.viewCount}}</view>
+      </view>
+      <view class="userName" wx:else>
+        <button class="login" open-type="getUserInfo" bindgetuserinfo="toGetUserInfo">未登录</button>
+      </view>
+    </view>
+  </view>
+</view>
+<view style="margin-top:50rpx;">
+  <block wx:for="{{userContent.userPublishs}}" wx:key="key" wx:for-item="userPubItem" wx:for-index="idx">
+    <view wx:if="{{userPubItem.loveLetters}}" catchtap='onDetails' data-letterid="{{userPubItem.loveLetters.id}}">
+      <view class="column mar20">
+        <view class="row  middle">
+          <view class="row jus-bet" style="width:100%">
+            <view class="row">
+              <image mode='aspectFill' class="img-headPortrait" src="{{userContent.user.icon}}"></image>
+              <view class="{{biaobaisex ? 'woman' : 'man'}}">{{userContent.user.name}}</view>
+            </view>
+            <view class="women font15">{{userPubItem.loveLetters.time}}</view>
+          </view>
+          <!-- <view style="margin-top:5rpx">
+            <image catchtap='onShowDelete' class="img-down" src="/images/icon/down.png"></image>
+            <view hidden="{{delete}}" style="color:#fff;background-color:red;padding:8rpx;font-size:14px;">
+              <image class="img-delete" src="/images/icon/delete.png"></image>删除</view>
+          </view> -->
+        </view>
+        <view class="{{biaobaisex ? 'woman' : 'man'}}" style="font-size:17px;margin:10rpx 0;">
+          <view wx:if="{{userPubItem.loveLetters.toPeople}}">To:{{userPubItem.loveLetters.toPeople}}</view>
+          <view wx:else>To:Ta</view>
+          <view class="xin-text">{{userPubItem.loveLetters.text}}</view>
+          <view wx:if="{{userPubItem.loveLetters.fromPeople}}" class="right">From:{{userPubItem.loveLetters.fromPeople}}</view>
+          <view wx:else>From:Ta</view>
+        </view>
+        <view>
+          <block wx:for="{{userPubItem.loveLetters.pictures}}" wx:key="key" wx:for-item="picturesItem">
+            <image mode="aspectFill" class="img-shangchuan" src='{{picturesItem.url}}'></image>
+          </block>
+        </view>
+        <view class="{{biaobaisex ? 'woman' : 'man'}} row icon-box ">
+          <view class="row comment">
+            <image wx:if="{{biaobaisex}}" class="icon" src="/images/icon/comment.png" />
+            <image wx:else class="icon" src="/images/icon/comment2.png" />
+            <view>{{userPubItem.loveLetters.commentcount}}</view>
+          </view>
+          <view class="row comment">
+            <view>{{userPubItem.loveLetters.likecount}}</view>
+            <image wx:if="{{biaobaisex}}" class="icon" catchtap='onLikeTap' data-idx="{{idx}}" data-likeid="{{userPubItem.loveLetters.id}}" src="{{likeArr[userPubItem.loveLetters.id]?'/images/icon/loveXin3.png':'/images/icon/loveXin.png'}}" />
+            <image wx:else class="icon" catchtap='onLikeTap' data-idx="{{idx}}" data-likeid="{{userPubItem.loveLetters.id}}" src="{{likeArr[userPubItem.loveLetters.id]?'/images/icon/lovexin4.png':'/images/icon/loveXin2.png'}}" />
+          </view>
+        </view>
+      </view>
+      <view class="ribbon"></view>
+    </view>
+    <view wx:if="{{userPubItem.loveAudios}}" catchtap='onDetail' data-audiosid="{{userPubItem.loveAudios.id}}">
+      <view class="column mar20">
+        <view class="row ">
+          <view class="row jus-bet middle" style="width:100%">
+            <view class="row">
+              <image mode='aspectFill' class="img-headPortrait" src="{{userContent.user.icon}}"></image>
+              <view class=" {{biaobaisex ? 'woman' : 'man'}}">
+                <view>{{userContent.user.name}}</view>
+              </view>
+            </view>
+            <view class="women font15">{{userPubItem.loveAudios.time}}</view>
+          </view>
+          <!-- <view style="margin-top:5rpx">
+            <image catchtap='onShowDelete' class="img-down" src="/images/icon/down.png"></image>
+             <view hidden="{{delete}}" style="color:#fff;background-color:red;padding:8rpx;font-size:14px;">
+              <image class="img-delete" src="/images/icon/delete.png"></image>删除</view> 
+          </view> -->
+        </view>
+        <view class="{{biaobaisex ? 'woman' : 'man'}} row " style="font-size:17px;margin:10rpx 0;">
+          <image class="sound" wx:if="{{biaobaisex}}" src="/images/icon/sound.png"></image>
+          <image wx:else class="sound" src="/images/icon/sound2.png"></image>
+          <view style="margin-left:20rpx;">
+            <view wx:if="{{userPubItem.loveAudios.toPeople}}">To:{{userPubItem.loveAudios.toPeople}}</view>
+            <view wx:else>To:Ta</view>
+            <view class="xin-text">{{userPubItem.loveAudios.text}}</view>
+            <view wx:if="{{userPubItem.loveAudios.fromPeople}}" >From:{{userPubItem.loveAudios.fromPeople}}</view>
+            <view wx:else>From:Ta</view>
+          </view>
+        </view>
+        <view>
+          <block wx:for="{{userPubItem.loveAudios.pictures}}" wx:key="key" wx:for-item="imgItem">
+            <image mode="aspectFill" class="img-shangchuan" src='{{imgItem.url}}'></image>
+          </block>
+        </view>
+        <view class="row icon-box {{biaobaisex ? 'woman' : 'man'}}">
+          <view class="row comment">
+            <image class="icon" src="/images/icon/play.png"></image>
+            <view>{{userPubItem.loveAudios.viewcount}}</view>
+          </view>
+          <view class="row comment">
+            <image wx:if="{{biaobaisex}}" class="icon" src="/images/icon/comment.png"></image>
+            <image wx:else class="icon" src="/images/icon/comment2.png"></image>
+            <view>{{userPubItem.loveAudios.commentcount}}</view>
+          </view>
+          <view class="row comment">
+            <view>{{userPubItem.loveAudios.likecount}}</view>
+            <image wx:if="{{biaobaisex}}" catchtap='onXinTap' class="icon" data-idx="{{idx}}" data-likeid="{{userPubItem.loveAudios.id}}" src="{{xinArr[userPubItem.loveAudios.id]?'/images/icon/loveXin3.png':'/images/icon/loveXin.png'}}"></image>
+            <image wx:else catchtap='onXinTap' class="icon" data-idx="{{idx}}" data-likeid="{{userPubItem.loveAudios.id}}" src="{{xinArr[userPubItem.loveAudios.id]?'/images/icon/loveXin4.png':'/images/icon/loveXin2.png'}}"></image>
+          </view>
+        </view>
+        <view class="ribbon"></view>
+      </view>
+    </view>
+  </block>
+</view>

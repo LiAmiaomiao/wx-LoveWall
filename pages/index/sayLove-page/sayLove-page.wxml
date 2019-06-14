@@ -1,0 +1,102 @@
+<view class="biaobai-content">
+  <view class="pos">
+    <view class="biaobai-top biaobai-height">
+      <view class="biaobaixin" data-currentTab="0" bindtap="switchTab">表白信</view>
+      <view class="biaobaiyuyin " data-currentTab="1" bindtap="switchTab">表白语音</view>
+    </view>
+  </view>
+  <view style="margin-top:80rpx;" wx:if="{{currentTab==0}}">
+    <block wx:for='{{newsArr}}' wx:for-item='item' wx:for-index='index' wx:key='news'>
+      <view class="{{biaobaisex?'xin-contentG':'xin-contentB'}}" bindtap="onShowDetail" data-loveListid="{{item.id}}">
+        <view class="gaobai-1 {{biaobaisex ? 'gaobai-1G' : 'gaobai-1B'}}">
+          <view class="gaobai-innner">
+            <view class="row" style=" justify-content: space-between;">
+              <view wx:if="{{item.toPeople}}">To:{{item.toPeople}}
+              </view>
+              <view wx:else>To:Ta</view>
+              <view>{{item.time}}</view>
+            </view>
+            <view class="xin-text column">{{item.text}}</view>
+            <view wx:if="{{item.fromPeople}}" class="ni">From:{{item.fromPeople}}</view>
+            <view wx:else class="ni">From:Ta</view>
+            <view class="row">
+              <block wx:for='{{item.pictures}}' wx:for-item='picturesItem' wx:for-index='index' wx:key='news'>
+                <view wx:if="{{index<3}}">
+                  <image wx:if="{{picturesItem.url}}" mode="aspectFill" class="img-shangchuan" src="{{picturesItem.url}}"></image>
+                </view>
+              </block>
+            </view>
+            <view class="dash {{biaobaisex ? 'dashG':'dashB'}}"></view>
+            <view style="justify-content: space-between;display:flex;flex-direction:row;height:50rpx;line-height:50rpx">
+              <view style="display:flex;flex-direction:row;margin-top:7rpx">
+                <image wx:if="{{biaobaisex}}" style="width:50rpx;height:50rpx;" src="/images/icon/comment.png" />
+                <image wx:else style="width:50rpx;height:50rpx;" src="/images/icon/comment2.png" />
+                <view class="left-comment">{{item.commentcount}}</view>
+              </view>
+              <view style="display:flex;flex-direction:row;margin-top:7rpx">
+                <view>{{item.likecount}}</view>
+                <image wx:if="{{biaobaisex}}" style="width:50rpx;height:50rpx;" catchtap='onLikeTap' data-likeId="{{item.id}}" src="{{likeArr[item.id]?'/images/icon/loveXin3.png':'/images/icon/loveXin.png'}}" />
+                <image wx:else style="width:50rpx;height:50rpx;" catchtap='onLikeTap' data-likeId="{{item.id}}" src="{{likeArr[item.id]?'/images/icon/lovexin4.png':'/images/icon/loveXin2.png'}}" />
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view style="margin-top:100rpx;" wx:if="{{currentTab==1}}">
+    <block wx:for='{{recordArr}}' wx:for-item='recordItem' wx:for-index='index' wx:key='records'>
+      <view class="row {{biaobaisex ? 'yuyin-color' : 'yuyin-color-1'}}" bindtap='onShowRecord' data-recordId="{{recordItem.id}}">
+        <view style="width:25%;">
+          <image mode='aspectFill' class="image-top" src="{{recordItem.user.icon}}"></image>
+        </view>
+        <view class="column" style="width:75%;">
+          <view class="row">
+            <view style="width:80%">
+              <view wx:if="{{recordItem.toPeople}}" style="margin-right:50rpx;padding-bottom:10rpx;">To:{{recordItem.toPeople}}</view>
+              <view style="margin-right:50rpx;padding-bottom:10rpx;" wx:else>To:Ta</view>
+              <view style="font-size:15px; word-break:break-all; ">{{recordItem.text}}</view>
+              <view wx:if="{{recordItem.formPeople}}">From:{{recordItem.formPeople}}</view>
+              <view wx:else>From:Ta</view>
+            </view>
+            <view style="width:20%">
+              <view class="sound-img">
+                <image wx:if="{{biaobaisex}}" class="sound" src="/images/icon/sound.png" />
+                <image wx:else class="sound" src="/images/icon/sound2.png" />
+              </view>
+            </view>
+          </view>
+          <view class="row icon-box">
+            <image class="play" src="/images/icon/play.png"></image>
+            <text class="play-num icon-padding">{{recordItem.viewcount}}</text>
+            <image wx:if="{{biaobaisex}}" catchtap='onXinTap' class="play" data-likeid="{{recordItem.id}}" src="{{xinArr[recordItem.id]?'/images/icon/loveXin3.png':'/images/icon/loveXin.png'}}"></image>
+            <image wx:else catchtap='onXinTap' class="play" data-likeid="{{recordItem.id}}" src="{{xinArr[recordItem.id]?'/images/icon/loveXin4.png':'/images/icon/loveXin2.png'}}"></image>
+            <text class="play-num icon-padding">{{recordItem.likecount}}</text>
+            <image wx:if="{{biaobaisex}}" class="play" src="/images/icon/comment.png"></image>
+            <image wx:else class="play" src="/images/icon/comment2.png"></image>
+            <text class="play-num icon-padding" style="padding-left:5rpx;">{{recordItem.commentcount}}</text>
+            <text style="font-size:13px;">{{recordItem.time}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+
+<view class="add-page">
+  <image class="add-image" src="/images/icon/add.png" bindtap="submit"></image>
+</view>
+<view class="mask" wx:if="{{showModal}}"></view>
+<view class="modal-content" catchtouchmove="true" wx:if="{{showModal}}">
+  <view class="modal">
+    <view class="biaobai-row">
+      <text catchtap='onShowSound'>语音表白</text>
+      <image catchtap='onShowSound' src="/images/icon/yuyin.png"></image>
+    </view>
+    <view class="biaobai-row">
+      <text catchtap="onShowText">文字表白</text>
+      <image catchtap="onShowText" src="/images/icon/text2.png"></image>
+    </view>
+    <image catchtap="go" class="off-image" src="/images/icon/off.png" />
+  </view>
+</view>

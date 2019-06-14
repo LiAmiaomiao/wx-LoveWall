@@ -1,0 +1,261 @@
+.userDetailContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+/*   */
+.woman{
+  color:#ffa5a5;
+}
+.man{
+  color:#77c9f1;
+}
+.middle{
+vertical-align: middle;
+height:110rpx;
+line-height:110rpx;
+justify-content: space-between;
+}
+.userBackground {
+  margin-bottom: 140px;
+}
+
+.userName {
+  font-size: 45rpx;
+  font-weight: bold;
+  padding: 40rpx 0 0 80rpx;
+}
+.topview{
+  width:500rpx;
+  float: left
+}
+.name {
+  font-size: 45rpx;
+  font-weight: bold;
+  float: left;
+  margin-left:30rpx;
+}
+.viewcount{
+  color:#ffa5a5;
+}
+/*用户信息  */
+
+.userMessage {
+  display: flex;
+  flex-direction: row;
+  font-size: 30rpx;
+  margin-top: 20rpx;
+}
+
+.collected {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 20%;
+}
+
+.concern {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 20%;
+}
+
+.concerned {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 20%;
+}
+
+.follow {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 35%;
+  line-height: 80rpx;
+}
+
+.ribbon {
+  margin-top: 15rpx;
+  margin-bottom:30rpx;
+  background: #eee;
+  height: 2rpx;
+  width: 100%;
+}
+
+.sound{
+  width:100rpx;
+  height:100rpx;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.underLine {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-items: center;
+  margin-bottom: 20rpx;
+  font-size: 34rpx;
+  /* border-bottom: 1rpx #eee solid; */
+}
+
+.selected {
+  color: #0d0d0d;
+  font-weight: 700;
+}
+
+.unselected {
+  color: #878787;
+}
+
+.label {
+  color: #878787;
+  background: #50b397;
+  height: 5rpx;
+  width: 200rpx;
+  margin-top: 3rpx;
+}
+.jus-ard{
+  justify-content: space-around;
+}
+
+
+
+
+.replay-btn {
+  line-height: 0;
+}
+
+.head-img {
+  width: 100%;
+  height: 150px;
+  position: absolute;
+  z-index: -1;
+  -webkit-filter: blur(5px);
+}
+
+.user_head {
+  top: 20%;
+  position: absolute;
+  width: 150rpx;
+  height: 150rpx;
+  left: 73%;
+  border-radius: 5%;
+}
+
+button[plain] {
+  border: none;
+  overflow: none;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  position: relative;
+  display: block;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+  box-sizing: border-box;
+  font-size: 18px;
+  text-align: center;
+  text-decoration: none;
+  line-height: 2.55555556;
+  border-radius: 5;
+  -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
+  color: #000;
+  background-color: #f8f8f8;
+  opacity: 0.7;
+}
+
+.login {
+  width: 150rpx;
+  float: right;
+  margin-right: 35%;
+}
+
+.img-headPortrait {
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 50%;
+}
+
+.mar20 {
+  margin: 0 20rpx;
+}
+
+.font15 {
+  font-size: 15px;
+  color: #808080;
+}
+
+.top10 {
+  margin-top: 10rpx;
+  margin-left: 10rpx;
+}
+
+.img-down {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.jus-bet {
+  justify-content: space-between;
+}
+
+.img-delete {
+  width: 35rpx;
+  height: 35rpx;
+  margin-right: 5rpx;
+}
+
+.img-shangchuan {
+  width: 220rpx;
+  height: 220rpx;
+  padding-right: 17rpx;
+}
+
+.xin-text {
+  text-indent: 1.5em;
+  word-break: break-all;
+}
+
+.man {
+  color: #77c9f1;
+}
+
+.women {
+  color: #ffa5a5;
+}
+
+.right {
+  text-align: right;
+}
+
+.icon-box {
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size:16px;
+  margin:0 10rpx;
+}
+.comment{
+  display:flex;flex-direction:row;margin-top:7rpx
+}
+.icon{
+  width:45rpx;height:45rpx;
+}
