@@ -189,11 +189,11 @@ Page({
 
     // 点赞数改变
     that.data.userContent.userPublishs[idx].loveLetters.likecount = that.data.userContent.userPublishs[idx].loveLetters.likecount + count;
-    wx.setStorageSync('likeArr', likeArr)
+    wx.setStorageSync('likeArr', likeArr);
     this.setData({
       likeArr,
       userContent: that.data.userContent
-    })
+    });
     wx.request({
       url: Config.restUrl + 'lovewall/loveletters/addlike/' + letterid + '.do',
       data: {
@@ -228,7 +228,7 @@ Page({
     this.setData({
       xinArr,
       userContent: that.data.userContent
-    })
+    });
 
     wx.request({
       url: Config.restUrl + 'lovewall/loveletters/addlike/' + audiosid + '.do',

@@ -1,0 +1,18 @@
+<view  hidden='{{onshow}}' >
+  <view class="biaobai">
+    <image src="/images/news/6.jpg" />
+  </view>
+  <view class="sayLove-page">
+    <view class="chest">
+     
+      <view class="heart left side top"></view>
+      <view class="heart center"></view>
+      <view class="heart right side"></view>
+      
+      <!-- <view class="more-unfold">
+        <image class="more-unfold-img" src="/images/icon/more_unfold.png"></image>
+      </view> -->
+    </view>
+    
+  </view>
+</view>
