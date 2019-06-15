@@ -1,0 +1,117 @@
+<view class="record-container">
+  <view class="{{biaobaisex ? 'record-topG':'record-topB'}}">
+    <view class="top-container">
+      <view wx:if='{{recordItem.coverUrl ==null}}'>
+        <image class="top-image" mode="aspectFill" src="/images/news/10.jpg" />
+      </view>
+      <view wx:if='{{recordItem.coverUrl !=null}}'>
+        <image class="top-image" mode="aspectFill" src="{{recordItem.coverUrl}}" />
+      </view>
+    </view>
+    <view class="row nameBox">
+      <view class="name-right">To:{{recordItem.toPeople}}</view>
+      <view>From:{{recordItem.fromPeople}}</view>
+      <view style="margin-right:15rpx" class="row" catchtap='onLikeTap' data-likeid="{{recordItem.id}}">
+      <image wx:if="{{biaobaisex}}"  class="loveXin" src="{{xinArr[recordItem.id]?'/images/icon/loveXin3.png':'/images/icon/loveXin.png'}}"></image>
+        <image wx:else class="loveXin" src="{{xinArr[recordItem.id]?'/images/icon/loveXin3.png':'/images/icon/loveXin.png'}}"></image>
+       <text>{{recordItem.likecount}}</text>
+      </view>
+    </view>
+    <view style="margin:0 20rpx;font-size:15px;color:#fff;">{{recordItem.text}}</view>
+    <view>
+      <view style="padding-left:15rpx;">
+        <audio src="{{recordItem.audioPath}}" action="{{audioAction}}" bindplay="audioPlayed" bindtimeupdate="audioTimeUpdated"></audio>
+        <slider bindchange="timeSliderChanged" activeColor="{{biaobaisex?'#ffa5a5':'#08e7ef'}}" left-icon="cancel" backgroundColor="#fff" right-icon="success_no_circle" style="width:660rpx;height:10px;margin:0 20rpx;padding-bottom:20rpx;"></slider>
+        <view class="row">
+          <view class="play-box" style="width:75%">
+            <image src="/images/icon/pre.png"></image>
+            <image wx:if="{{!play}}" bindtap="playAudio" src="/images/icon/play3.png"></image>
+            <image wx:else="{{play}}" bindtap="pauseAudio" src="/images/icon/play2.png"></image>
+            <image src="/images/icon/next.png"></image>
+          </view>
+          <view style="width:25%;">
+            <text class="play-text">{{recordItem.time}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view style="width:100%">
+    <view class="row {{biaobaisex?'comment-bottomG':'comment-bottomB'}}">
+      <view style="padding-bottom:10rpx">评论列表</view>
+    </view>
+    <view wx:if='{{addcomments.user}}'>
+      <view style="width:100%" class="column comment-color">
+        <view class="comment-1 row">
+          <view class="row">
+            <image class="img-small" src="{{addcomments.user.icon}}"></image>
+            <text>{{addcomments.user.name}}</text>
+          </view>
+          <view>{{mess}}</view>
+          <view class="xin-size row" style="width:15%;text-align:right" catchtap='onAddFlower' data-addflowerid="{{addcomments.id}}">
+            <image class="xin-small" src="{{commentArr2[addcomments.id]?'/images/icon/zan.png':'/images/icon/zan1.png'}}"></image>
+            <view>{{addcomments.likecount}}</view>
+          </view>
+        </view>
+        <view class="comment-text">{{addcomments.content}}
+        </view>
+      </view>
+      
+    </view>
+    <block wx:for='{{recordItem.comments}}' wx:for-item='commentItem' wx:for-index='ids' wx:key='news'>
+      <view class="column comment-color">
+        <view class="comment-1 row">
+          <view class="row">
+            <image class="img-small" src="{{commentItem.user.icon}}"></image>
+            <text>{{commentItem.user.name}}</text>
+          </view>
+          <view>{{commentItem.time}}</view>
+          <view class="xin-size row" style="width:15%;text-align:right" catchtap='onaddflowerComment' data-flowerCountid="{{commentItem.id}}">
+            <image class="xin-small" src="{{commentArr2[commentItem.id]?'/images/icon/zan.png':'/images/icon/zan1.png'}}"></image>
+            <view>{{commentItem.likecount}}</view>
+          </view>
+        </view>
+        <view class="comment-text">{{commentItem.content}}
+        </view>
+      </view>
+      <!-- <view class="column comment-color">
+        <view class="comment-1 row">
+          <view style="width:80%">
+            <image class="img-small" src="{{commentItem.user.icon}}"></image>
+            <text>{{commentItem.user.name}}</text>
+          </view>
+          <view>{{commentItem.time}}</view>
+          <view class="xin-size row" style="width:15%;text-align:right" catchtap='onaddflowerComment' data-flowerCountid="{{commentItem.id}}">
+            <image class="xin-small" src="{{commentArr2[commentItem.id]?'/images/icon/zan.png':'/images/icon/zan1.png'}}"></image>
+            <view>{{commentItem.likecount}}</view>
+          </view>
+        </view>
+        <view class="comment-text">{{commentItem.content}}</view>
+      </view> -->
+    </block>
+  </view>
+  <view class="footer " bindtap="onComment">
+    <view class="footer-content">
+      <view class="row">
+        <view class="column" style="width:87%;">
+          <text class="comment-click">点击输入评论</text>
+          <view class="dash"></view>
+        </view>
+        <view style="width:13%">
+          <image class="rabbit" src="/images/icon/rabbit.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+  <view class="modal" wx:if="{{showModal}}" catchtouchmove="true">
+    <view class="modal-title">请留下你的评论</view>
+    <form bindsubmit="submitComment">
+      <textarea class='drawer_textarea' maxlength='500' selection-start="1" auto-focus="{{true}}" name="textarea"></textarea>
+      <view class='btn_sum'>
+        <button class='drawer_btn' bindtap="oncancle" data-statu="close"> 取消 </button>
+        <button class='drawer_btn' form-type="submit" data-statu="close"> 提交 </button>
+      </view>
+    </form>
+  </view>
+</view>
