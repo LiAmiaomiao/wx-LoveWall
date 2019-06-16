@@ -9,7 +9,6 @@ Page({
       method: 'pause'
     },
     commentsize:0
-
   },
   onLoad: function (options) {
     var that = this;
