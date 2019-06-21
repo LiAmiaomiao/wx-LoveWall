@@ -1,0 +1,38 @@
+<progress percent="{{progressLength}}" style='display:{{isshow}}' show-info active stroke-width="10" active-mode='forwards' color="pink" />
+<scroll-view scroll-y='true'>
+  <form bindsubmit='bindFormSubmit'>
+    <view class="publish-container">
+      <view class="{{biaobaisex?'publish-topG':'publish-topB'}}">
+        <view class="column photo-box">
+          <view class="row center bottom">
+            <text style="width:20%;font-size:22px;">To:</text>
+            <input name="toPeople" focus="true" cursor="2" class="input-box" placeholder='请输入表白对象' placeholder-class='placehoder'></input>
+          </view>
+          <view class="row center" style="margin-bottom:30rpx;">
+            <text style="width:20%;font-size:22px;">From:</text>
+            <input name="fromPeople"  class="input-box" cursor="2"  placeholder-class='placehoder' placeholder='请留下你的大名'></input>
+          </view>
+          <view>
+
+            <textarea name="loveContent" class="text-input" focus='true' auto-height="true" maxlength="-1"  placeholder='请输入表白内容'></textarea>
+            
+            <view class="row shangchuan-photo">
+              <block wx:for='{{filepaths}}' wx:for-item='imgpath' wx:key='imgpath'>
+                <image mode="aspectFill" class="addImage" src="{{imgpath}}"></image>
+              </block>
+            </view>
+            <view class="row addphoto">
+              <image bindtap='addImage' mode="aspectFit" class="addImage" src="{{imgDefault}}"></image>
+            </view>
+          </view>
+          <!-- <view class="anonymity">
+            <checkbox color="#fd8b8b" value="匿名">匿名</checkbox>
+          </view> -->
+        </view>
+      </view>
+      <view>
+        <button form-type="submit" class="{{biaobaisex?'submitG':'submitB'}}">发表</button>
+      </view>
+    </view>
+  </form>
+</scroll-view>

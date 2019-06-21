@@ -1,0 +1,152 @@
+.publish-container {
+  margin: 10rpx 20rpx;
+}
+
+.publish-topG {
+  text-align: center;
+  color: #fff;
+  background-color: #fadbe6;
+  border-radius: 8px;
+  margin-bottom: 20rpx;
+}
+.publish-topB {
+  text-align: center;
+  color: #fff;
+  background-color:  #b8e1f5;
+  border-radius: 8px;
+  margin-bottom: 20rpx;
+}
+.publish-text {
+  font-size: 30px;
+  font-family: 黑体;
+  font-weight: bold;
+}
+
+.pulish-img {
+  width: 300rpx;
+  height: 250rpx;
+  padding: 30rpx 0;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.photo-box {
+  padding-left: 10rpx;
+  padding-top: 20rpx;
+}
+
+.input-box {
+  background-color: #fff;
+  border: #fff solid 1px;
+  border-radius: 5px;
+  width: 500rpx;
+  height: 70rpx;
+  margin-left: 10rpx;
+  color: #808080;
+  text-align: left;
+}
+
+.photo-box {
+  text-align: center;
+}
+
+.center {
+  text-align: center;
+}
+
+.placehoder {
+  color: #808080;
+  text-align: left;
+  font-size: 13px;
+  padding-left: 20rpx;
+}
+
+.bottom {
+  margin-bottom: 40rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+}
+
+.record-sound {
+  border: #ffa5a5 solid 1px;
+  width: 80%;
+  height: 80rpx;
+  background-color: #ffa5a5;
+  border-radius: 5px;
+  line-height: 80rpx;
+  vertical-align: middle;
+  margin-left: 10%;
+  margin-bottom: 40rpx;
+}
+
+.submitG {
+  width: 100%;
+  height: 80rpx;
+  background-color: #fadbe6; 
+  border-radius: 5px;
+  line-height: 80rpx;
+  vertical-align: middle;
+  text-align: center;
+  color: #fff;
+}
+.submitB {
+  width: 100%;
+  height: 80rpx;
+  background-color:  #b8e1f5;
+  border-radius: 5px;
+  line-height: 80rpx;
+  vertical-align: middle;
+  text-align: center;
+  color: #fff;
+}
+.text-input {
+  background-color: #fff;
+  border: #fff solid 1px;
+  width: 646rpx;
+  margin: 0 20rpx;
+  text-align: left;
+  color: #808080;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding-bottom:150rpx;
+
+}
+.shangchuan-photo {
+  width: 650rpx;
+  background-color: #fff;
+  margin: 0 20rpx;
+  text-align: left;
+  justify-content: space-around;
+  padding-top:200rpx;
+  padding-bottom:20rpx;
+}
+.addphoto{
+  width: 650rpx;
+  background-color: #fff;
+  margin: 0 20rpx;
+  text-align: left;
+  justify-content: space-around;
+  padding-bottom:20rpx;
+  margin-bottom:10px;
+  border-bottom-left-radius:5px;
+  border-bottom-right-radius:5px;
+}
+.anonymity {
+  text-align: right;
+  margin-right: 50rpx;
+  padding: 20rpx 0;
+  color: #808080;
+}
+
+.addImage {
+  width: 210rpx;
+  height: 200rpx;
+}

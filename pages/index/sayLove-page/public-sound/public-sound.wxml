@@ -1,0 +1,46 @@
+<view style="text-align:center;margin-top:-10%;">
+  <image src="/images/news/timg.gif" />
+</view>
+<form bindsubmit='bindSubmit'>
+  <view class="publish-container">
+    <view class="publish-top {{biaobaisex ? 'public-backgroundG': 'public-backgroundB'}}">
+      <view class="column photo-box">
+        <view class="publish-text">上传一张皂片吧</view>
+        <view class="center" style="height:200rpx;margin:20rpx 0;">
+          <image mode="aspectFill" catchtap="addImage" class="addImage" src="{{imgDefault}}" />
+        </view>
+
+        <view class="row center bottom">
+          <text style="width:20%;font-size:22px;">To:</text>
+          <input class="input-box" name="toPeople"  placeholder='请输入表白对象' placeholder-class='placehoder' />
+        </view>
+        <view class="row center">
+          <text style="width:20%;font-size:22px;">From:</text>
+          <input class="input-box" name="fromPeople" placeholder-class='placehoder' placeholder='请留下你的大名' />
+        </view>
+        <view class="text-input">
+           <input  class="text-content" name="loveContent" placeholder-class="placehoder" placeholder='一句情话(21个字以内)'></input> 
+          <!-- <view contenteditable="value" class="text-content" name="loveContent"></view> -->
+        </view>
+        <view class="{{biaobaisex?'record-soundG':'record-soundB'}}" catchtap='onRecord'>点击录音</view>
+      </view>
+    </view>
+    <button form-type="submit" class="{{biaobaisex?'submitG':'submitB'}}">提交</button>
+  </view>
+</form>
+<view class="mask" catchtouchmove="preventTouchMove" hidden='{{hideRecord}}'></view>
+<view class="modal" catchtouchmove="true" hidden='{{hideRecord}}'>
+  <view class='myi'>
+    <view wx:for="{{radomheight}}" wx:key="radom" style='height:{{item}}rpx;margin-top:-{{item/2}}rpx'></view>
+    <view style='clear:both;width:0;height:0;'></view>
+  </view>
+  <view class="voice-style" bindtap="startOrpause">
+    <image class="bg-style" src="/images/record/voice_icon_speaking_bg_normal.png"></image>
+    <image class="sound-style" src="/images/record/voice_icon_speech_sound_1.png"></image>
+    <image wx:if="{{j==2}}" class="sound-style" src="/images/record/voice_icon_speech_sound_2.png"></image>
+    <image wx:if="{{j==3}}" class="sound-style" src="/images/record/voice_icon_speech_sound_3.png"></image>
+    <image wx:if="{{j==4}}" class="sound-style" src="/images/record/voice_icon_speech_sound_4.png"></image>
+    <image wx:if="{{j==5}}" class="sound-style" src="/images/record/voice_icon_speech_sound_5.png"></image>
+  </view>
+  <button class="finish" catchtap='finsh'>完成</button>
+</view>
