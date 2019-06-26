@@ -1,0 +1,100 @@
+
+<view class="love-detail-container"  style="margin-bottom:140rpx;">
+  <view class="{{biaobaisex ? 'xin-contentG' : 'xin-contentB'}}">
+    <view class="gaobai-1">
+      <view class="gaobai-innner">
+        <view class="row title {{biaobaisex ? 'woman' : 'man' }}" >
+          <view class="row ">
+            <image mode="aspectFill" class="head-portrait" src="{{loveItem.user.icon}}"></image>
+            <view>{{loveItem.user.name}}</view>
+          </view>
+          <view>{{loveItem.time}}</view>
+          <view class="row mun-xin" catchtap="onLikeTap" data-likeid="{{loveItem.id}}">
+            <view>{{loveItem.likecount}}</view>
+            <image wx:if="{{biaobaisex}}" class="img-size" src="{{likeArr[loveItem.id]?'/images/icon/loveXin3.png':'/images/icon/loveXin.png'}}"></image>
+            <image wx:else class="img-size" src="{{likeArr[loveItem.id]?'/images/icon/loveXin4.png':'/images/icon/loveXin2.png'}}"></image>
+          </view>
+        </view>
+        <view class="{{biaobaisex ? 'woman' : 'man' }}" wx:if="{{loveItem.toPeople}}" >To:{{loveItem.toPeople}}
+        </view>
+        <view  wx:else>
+          To:Ta
+        </view>
+        <view class="xin-text {{biaobaisex ? 'woman' : 'man' }}">{{loveItem.text}}
+        </view>
+        <view class="name {{biaobaisex ? 'woman' : 'man' }}"  wx:if="{{loveItem.fromPeople}}">---{{loveItem.fromPeople}}</view>
+        <view class="name {{biaobaisex ? 'woman' : 'man' }}" wx:else>---Ta</view>
+        <view class="row">
+          <block wx:for='{{loveItem.pictures}}' wx:for-item='picturesItem' wx:for-index='ids' wx:key='news'>
+            <view wx:if="{{ids<3}}">
+              <image mode="aspectFill" class="img-shangchuan" src="{{picturesItem.url}}"></image>
+            </view>
+          </block>
+        </view>
+        <view>
+          <view class="{{biaobai ? 'comment-bottomG' : 'comment-bottomB'}}">
+            <view style="margin-bottom:10rpx;color:#808080;">评论列表</view>
+          </view>
+          <view wx:if='{{addcomments.user}}'>
+            <view style="width:100%" class="column comment-color">
+              <view class="comment-1 row">
+                <view class="row" >
+                  <image class="img-small" src="{{addcomments.user.icon}}"></image>
+                  <text>{{addcomments.user.name}}</text>
+                </view>
+                <view>{{mess}}</view>
+                <view class="xin-size row" style="width:15%;text-align:right" catchtap='onaddflowerComment' data-addFlowerid="{{commentItem.id}}">
+                  <image class="xin-small" src="{{commentArr2[addcomments.id]?'/images/icon/zan.png':'/images/icon/zan1.png'}}"></image>
+                  <view>{{addcomments.likecount}}</view>
+                </view>
+              </view>
+              <view class="comment-text">{{addcomments.content}}
+              </view>
+            </view>
+          </view>
+        </view>
+        <block wx:for='{{loveItem.comments}}' wx:for-item='commentItem' wx:for-index='ids' wx:key='news'>
+          <view class="column comment-color">
+            <view class="comment-1 row">
+              <view class="row" >
+                <image class="img-small" src="{{commentItem.user.icon}}"></image>
+                <text>{{commentItem.user.name}}</text>
+              </view>
+              <view>{{commentItem.time}}</view>
+              <view class="xin-size row" style="width:15%;text-align:right" catchtap='onaddflowerComment' data-addFlowerid="{{commentItem.id}}">
+                <image class="xin-small" src="{{commentArr2[commentItem.id]?'/images/icon/zan.png':'/images/icon/zan1.png'}}"></image>
+                <view>{{commentItem.likecount}}</view>
+              </view>
+            </view>
+            <view class="comment-text">{{commentItem.content}}
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="footer " bindtap='onComment'>
+  <view class="footer-content">
+    <view class="row">
+      <view class="column" style="width:87%;">
+        <text class="comment-click">点击输入评论</text>
+        <view class="dash"></view>
+      </view>
+      <view style="width:13%">
+        <image class="rabbit" src="/images/icon/rabbit.png"></image>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modal" wx:if="{{showModal}}" catchtouchmove="true">
+  <view class="modal-title">请留下你的评论</view>
+  <form bindsubmit="submitComment">
+    <textarea class='drawer_textarea' maxlength='500' selection-start="1" auto-focus="{{true}}" name="textarea"></textarea>
+    <view class='btn_sum'>
+      <button class='drawer_btn' bindtap="oncancle" data-statu="close"> 取消 </button>
+      <button class='drawer_btn' form-type="submit" data-statu="close"> 提交 </button>
+    </view>
+  </form>
+</view>
